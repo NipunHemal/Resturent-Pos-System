@@ -61,8 +61,7 @@ export const ItemCartOffcanvas = () => {
         </div>
 
         <div class="d-grid gap-2 mt-4">
-          <button id="print-invoice" class="btn btn-outline-secondary">Print Invoice</button>
-          <button class="btn btn-success btn-lg">Payments</button>
+          <button class="btn btn-success btn-lg" id="place-order-btn">Place Order</button>
         </div>
       </div>
     </div>`;
@@ -145,4 +144,8 @@ export const cartItemContent = (item, quantity) => {
             </button>
           </div>
     `;
+};
+
+export const closeOffcanvas = () => {
+  $(".offcanvas").offcanvas("hide");
 };
