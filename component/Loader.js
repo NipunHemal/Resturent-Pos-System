@@ -10,7 +10,6 @@ export function loader(type = "default") {
   const $loadingEl2 = $(`
     <div class="page-loader vh-100 vw-100 position-fixed top-0 start-0 d-flex flex-column justify-content-center align-items-center bg-dark bg-opacity-25" style="z-index: 1050;">
       <span class="spinner-border text-primary" role="status"></span>
-      <span class="text-muted fs-6 fw-semibold mt-3">Loading...</span>
     </div>
   `);
 
