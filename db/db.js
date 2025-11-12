@@ -113,10 +113,10 @@ const itemDb = {
 };
 
 const itemCategoryDb = [
-  { id: 1, name: "Coffee", icon: "bi bi-cup-hot" },
+  { id: 1, name: "Coffee", icon: "  bi bi-cup-hot" },
   { id: 2, name: "Beverage", icon: "bi bi-cup-straw" },
   { id: 3, name: "Food", icon: "bi bi-basket" },
-  { id: 4, name: "Dessert", icon: "bi bi-ice-cream" },
+  { id: 4, name: "Dessert", icon: "bi bi-cake" },
 ];
 
 const customerDb = [
@@ -168,6 +168,7 @@ const orderDb = [
     id: 1,
     customerId: 1,
     type: "Dine-In",
+    paymentType: "Cash",
     items: [
       { id: 1, quantity: 2 },
       { id: 2, quantity: 1 },
