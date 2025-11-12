@@ -81,13 +81,31 @@
 
         <main class="col-md-11 col-lg-11 bg-light p-4" id="main-content">
           <div class="d-flex mb-3">
-            <button class="btn btn-outline-secondary active me-2">All</button>
-            <button class="btn btn-outline-secondary me-2">Ice Coffee</button>
-            <button class="btn btn-outline-secondary me-2">American</button>
-            <button class="btn btn-outline-secondary me-2">Café Noir</button>
-            <button class="btn btn-outline-secondary me-2">
-              Brewed Coffee
-            </button>
+            <div>
+              <button class="btn btn-outline-secondary active me-2">All</button>
+              <button class="btn btn-outline-secondary me-2">Ice Coffee</button>
+              <button class="btn btn-outline-secondary me-2">American</button>
+              <button class="btn btn-outline-secondary me-2">Café Noir</button>
+              <button class="btn btn-outline-secondary me-2">
+                Brewed Coffee
+              </button>
+            </div>
+            <div class="input-group ms-auto w-25">
+              <input
+                id="order_item_search_input"
+                type="text"
+                class="form-control rounded-end-circle rounded-pill"
+                placeholder="Search items..."
+                aria-label="Search items"
+                aria-describedby="basic-addon2"
+              />
+              <span
+                class="input-group-text rounded-pill rounded-start-circle"
+                id="basic-addon2"
+              >
+                <i class="bi bi-search"></i>
+              </span>
+            </div>
           </div>
 
           <div
