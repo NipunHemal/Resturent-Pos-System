@@ -1,0 +1,122 @@
+/* Basic Setup */
+body {
+  background-color: #f4f7f6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 1. Left Sidebar Navigation */
+#left-nav .nav-link {
+  color: #aaa;
+  margin-bottom: 15px;
+  padding: 10px 0;
+}
+
+#left-nav .nav-link.active,
+#left-nav .nav-link:hover {
+  background-color: #fff8e1; /* Light yellow background */
+  color: #ffc107; /* Bootstrap 'warning' yellow */
+  border-radius: 8px;
+}
+
+#left-nav .nav-link i {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* 2. Main Content */
+#main-content {
+  height: calc(100vh - 56px); /* Full height minus navbar */
+  overflow-y: auto;
+}
+
+/* global styles */
+.txt-orange {
+  color: #f67f20 !important; /* Orange color from the image */
+}
+
+.bg-orange {
+  background-color: #ffc107; /* Orange color from the image */
+}
+
+.btn-orange {
+  background-color: #ffc107; /* Orange color from the image */
+  color: #fff;
+  border: none;
+}
+
+/* Product Card */
+.product-card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  border-radius: 12px 12px 0 0;
+  padding: 20px;
+  background-color: #fafafa;
+}
+
+.product-card .card-body {
+  padding-top: 0;
+}
+
+/* Category Filter Buttons */
+.btn-outline-secondary {
+  border-radius: 20px;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn-outline-secondary.active {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* 3. Right Sidebar (Order/Cart) */
+#order-sidebar {
+  height: calc(100vh - 56px); /* Full height minus navbar */
+  overflow-y: auto;
+  border-left: 1px solid #eee;
+}
+
+.fs-sm {
+  /* Custom class for small font size */
+  font-size: 0.85rem;
+}
+
+.cart-item img {
+  border-radius: 8px;
+}
+
+.quantity-controls .form-control {
+  border-radius: 8px;
+  text-align: center;
+  padding: 0.3rem 0.5rem;
+}
+
+.quantity-controls .btn {
+  border-radius: 8px;
+  padding: 0.3rem 0.6rem;
+}
+
+.btn-success {
+  background-color: #28a745; /* Green color from image */
+  border: none;
+  border-radius: 8px;
+}
+
+.btn-warning {
+  background-color: #ffc107; /* Orange/Yellow from image */
+  color: #333;
+  border: none;
+  border-radius: 8px;
+}
