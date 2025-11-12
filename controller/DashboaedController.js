@@ -1,5 +1,10 @@
+import { ConfirmOrderModel } from "../component/ConfirmOrderModel.js";
 import { ItemCard } from "../component/ItemCard.js";
-import { loadCartItems } from "../component/ItemCartOffcanvas.js";
+import {
+  closeOffcanvas,
+  loadCartItems,
+} from "../component/ItemCartOffcanvas.js";
+import { loader } from "../component/Loader.js";
 import { SidebarContent } from "../component/SidebarItem.js";
 import ItemModel from "../model/ItemModel.js";
 import { tost } from "../util/tostUtil.js";
@@ -21,15 +26,24 @@ export class DashboardController {
 
   loadSidebar() {
     const categories = ItemModel.getCategories();
-    categories?.forEach((category) => {
-      const sidebarItem = SidebarContent(category);
-      $("#sidebar-content").append(sidebarItem);
-    });
+    const sidebarItems = categories
+      ?.map((category) => SidebarContent(category))
+      .join("");
+    $("#sidebar-content").html(sidebarItems);
+    this.initializeSidebar();
   }
 
-  loadItems() {
-    const items = ItemModel.getAllItems();
-    console.log(items);
+  initializeSidebar() {
+    $("#sidebar-content").on("click", "a", (event) => {
+      const category = $(event.currentTarget).data("category");
+      loader("dark");
+      this.loadItems(category);
+    });
+  }
+  loadItems(category = null) {
+    const items = category
+      ? ItemModel.getItemsByCategory(category)
+      : ItemModel.getAllItems();
     const itemsHtml = items?.map((item) => ItemCard(item)).join(" ");
     $("#order_item_container").html(itemsHtml);
 
@@ -64,6 +78,15 @@ export class DashboardController {
       const itemId = $(this).data("item-id");
       ItemModel.removeFromCart(itemId);
       loadCartItems(ItemModel.getCart());
+    });
+    $("#place-order-btn").on("click", () => {
+      closeOffcanvas();
+      ConfirmOrderModel.init();
+      ConfirmOrderModel.open();
+      ConfirmOrderModel.onConfirm(() => {
+        // ItemModel.clearCart();
+        // loadCartItems(ItemModel.getCart());
+      });
     });
   }
 }
