@@ -1,4 +1,4 @@
-import { itemCategoryDb, itemDb } from "../db/db.js";
+import { cartDb, itemCategoryDb, itemDb } from "../db/db.js";
 
 const ItemModel = {
   getCategories: () => {
@@ -181,6 +181,57 @@ const ItemModel = {
     }
 
     return allItems;
+  },
+
+  getCart: () => {
+    return cartDb;
+  },
+  addToCart: (itemId, quantity) => {
+    console.log("Adding to cart:", itemId, quantity);
+    const item = ItemModel.getItemById(itemId);
+    if (item) {
+      const cartItemIndex = cartDb.findIndex((i) => i.id === item.id);
+      if (cartItemIndex !== -1) {
+        cartDb[cartItemIndex].quantity += quantity;
+      } else {
+        cartDb.push({ id:itemId, quantity });
+      }
+    } else {
+      throw new Error(`Item with ID ${itemId} not found`);
+    }
+  },
+  incrementQuantity: (itemId) => {
+    const itemIndex = cartDb.findIndex((i) => i.id === itemId);
+    if (itemIndex !== -1) {
+      cartDb[itemIndex].quantity += 1;
+      return cartDb[itemIndex].quantity;
+    } else {
+      throw new Error(`Item with ID ${itemId} not found in cart`);
+    }
+  },
+  decrementQuantity: (itemId) => {
+    const itemIndex = cartDb.findIndex((i) => i.id === itemId);
+    if (itemIndex !== -1) {
+      cartDb[itemIndex].quantity -= 1;
+      if (cartDb[itemIndex].quantity <= 0) {
+        ItemModel.removeFromCart(itemId);
+        return null;
+      }
+      return cartDb[itemIndex]?.quantity || null;
+    } else {
+      throw new Error(`Item with ID ${itemId} not found in cart`);
+    }
+  },
+  removeFromCart: (itemId) => {
+    const itemIndex = cartDb.findIndex((i) => i.id === itemId);
+    if (itemIndex !== -1) {
+      cartDb.splice(itemIndex, 1);
+    } else {
+      throw new Error(`Item with ID ${itemId} not found in cart`);
+    }
+  },
+  clearCart: () => {
+    cartDb = [];
   },
 };
 
