@@ -1,5 +1,6 @@
 import { CustomerModel } from "../model/CustomerModel.js";
 import ItemModel from "../model/ItemModel.js";
+import OrderModel from "../model/OrderModel.js";
 import { tost } from "../util/tostUtil.js";
 
 export const ConfirmOrderModel = {
@@ -111,11 +112,11 @@ export const ConfirmOrderModel = {
                         <td class="fw-medium ps-0 py-3">${item.name}</td>
                         <td class="text-center py-3">${cartItem.quantity}</td>
                         <td class="text-end py-3">RS :  ${item.price.toFixed(
-                          2
-                        )}</td>
+        2
+      )}</td>
                         <td class="text-end fw-medium pe-0 py-3">RS :  ${(
-                          cartItem.quantity * item.price
-                        ).toFixed(2)}</td>
+          cartItem.quantity * item.price
+        ).toFixed(2)}</td>
                     </tr>`;
       tbody.append(tr);
       subtotal += cartItem.quantity * item.price;
@@ -157,6 +158,17 @@ export const ConfirmOrderModel = {
           tost("Please select customer, order type and payment type", "error");
           return;
         }
+
+        const orderData = {
+          customerId: selectedCustomer,
+          type: selectedType,
+          paymentType: selectedPaymentType,
+          items: ItemModel.getCart(),
+          total: OrderModel.calculateTotal(),
+          date: new Date().toISOString().split("T")[0],
+        };
+
+        OrderModel.add(orderData);
 
         Swal.fire({
           text: "Here's a basic example of SweetAlert!",
