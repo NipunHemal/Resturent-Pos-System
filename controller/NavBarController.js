@@ -1,6 +1,5 @@
 import { loader } from "../component/Loader.js";
 import { CustomerView } from "../view/CustomerView.js";
-import { DashboardView } from "../view/Dashboard.js";
 import { ItemsView } from "../view/ItemsView.js";
 import { OrderHistoryView } from "../view/OrderHostoryView.js";
 import { OrdersView } from "../view/OrdersView.js";
