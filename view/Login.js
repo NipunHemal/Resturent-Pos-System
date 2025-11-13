@@ -1,4 +1,4 @@
-import AuthController from "../controller/AuthController.js";
+import AuthController from "../controller/authController.js";
 
 export class Login {
   constructor() {
