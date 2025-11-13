@@ -1,3 +1,6 @@
+import { orderDb } from "../db/db.js";
+import ItemModel from "./ItemModel.js";
+
 const OrderModel = {
   // 🟢 Get all orders
   getAll() {
@@ -17,7 +20,7 @@ const OrderModel = {
   // 🟢 Add a new order
   add(orderData) {
     const newOrder = {
-      id: generateId(),
+      id: OrderModel.generateId(),
       customerId: orderData.customerId,
       type: orderData.type || "Dine-In",
       paymentType: orderData.paymentType || "Cash",
@@ -49,13 +52,18 @@ const OrderModel = {
   },
 
   // 🧾 Calculate order total dynamically (optional helper)
-  calculateTotal(items, itemModel) {
-    if (!itemModel) return 0; // you can pass ItemModel
+  calculateTotal() {
+    const cartItems = ItemModel.getCart();
     let total = 0;
-    items.forEach((item) => {
-      const itemData = itemModel.getById(item.id);
+    cartItems.forEach((item) => {
+      const itemData = ItemModel.getItemById(item.id);
       if (itemData) total += itemData.price * item.quantity;
     });
     return total;
   },
+  generateId() {
+    return orderDb.length > 0 ? Math.max(...orderDb.map((o) => o.id)) + 1 : 1;
+  },
 };
+
+export default OrderModel;
