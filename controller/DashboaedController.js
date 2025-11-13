@@ -35,6 +35,8 @@ export class DashboardController {
 
   initializeSidebar() {
     $("#sidebar-content").on("click", "a", (event) => {
+      $("#sidebar-content a").removeClass("active");
+      $(event.currentTarget).addClass("active");
       const category = $(event.currentTarget).data("category");
       loader("dark");
       this.loadItems(category);
