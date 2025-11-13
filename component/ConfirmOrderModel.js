@@ -1,5 +1,6 @@
 import { CustomerModel } from "../model/CustomerModel.js";
 import ItemModel from "../model/ItemModel.js";
+import { tost } from "../util/tostUtil.js";
 
 export const ConfirmOrderModel = {
   render: () => {
@@ -25,7 +26,7 @@ export const ConfirmOrderModel = {
 
                         <div class="col-md-4">
                             <label class="form-label text-uppercase text-muted small fw-bold mb-1">Order Type</label>
-                            <select class="form-select bg-light border-0 shadow-sm">
+                            <select id="order-type-select" class="form-select bg-light border-0 shadow-sm">
                                 <option selected>Dine-in</option>
                                 <option value="1">Takeaway</option>
                                 <option value="2">Delivery</option>
@@ -34,7 +35,7 @@ export const ConfirmOrderModel = {
 
                         <div class="col-md-4">
                             <label class="form-label text-uppercase text-muted small fw-bold mb-1">Payment Type</label>
-                            <select class="form-select bg-light border-0 shadow-sm">
+                            <select id="payment-type-select" class="form-select bg-light border-0 shadow-sm">
                                 <option selected>Credit Card</option>
                                 <option value="1">Cash</option>
                                 <option value="2">Wallet</option>
@@ -145,6 +146,18 @@ export const ConfirmOrderModel = {
       .off("click")
       .on("click", () => {
         this.close();
+
+        const selectedCustomer = $("#customer-select").val();
+        const selectedType = $("#order-type-select").val();
+        const selectedPaymentType = $("#payment-type-select").val();
+
+        console.log(selectedCustomer, selectedType, selectedPaymentType);
+
+        if (!selectedCustomer || !selectedType || !selectedPaymentType) {
+          tost("Please select customer, order type and payment type", "error");
+          return;
+        }
+
         Swal.fire({
           text: "Here's a basic example of SweetAlert!",
           icon: "success",
