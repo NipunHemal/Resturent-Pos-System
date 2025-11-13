@@ -1,13 +1,16 @@
 import { loader } from "../component/Loader.js";
 import renderCustomer from "../controller/CustomerController.js";
-import { ItemsView } from "../view/ItemsView.js";
 import { OrderHistoryView } from "../view/OrderHostoryView.js";
 import { OrdersView } from "../view/OrdersView.js";
 import { DashboardController } from "./DashboaedController.js";
+import { ItemController } from "./ItemController.js";
 
 export class NavBarController {
     constructor() {
         this._dashboardController = new DashboardController();
+        this._itemsController = new ItemController();
+        this._itemsController.render();
+        this._itemsController.load();
     }
 
     init() {
@@ -34,7 +37,8 @@ export class NavBarController {
     handelClickItemsBar() {
         loader("dark");
         console.log("Items clicked");
-        $("#main-container").html(ItemsView())
+        this._itemsController.render();
+        this._itemsController.load();
     }
 
     handleOrdersClick() {
