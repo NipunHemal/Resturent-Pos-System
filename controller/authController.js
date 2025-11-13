@@ -1,5 +1,5 @@
 import AuthDto from "../dto/AuthDto.js";
-import { AuthModel } from "../model/AuthModel.js";
+import { AuthModel } from "../model/authModel.js";
 import { redirectToDashboard } from "../util/siteUtil.js";
 import { isEmpty, isEmailValid } from "../util/validation.js";
 import { tost } from "../util/tostUtil.js";
