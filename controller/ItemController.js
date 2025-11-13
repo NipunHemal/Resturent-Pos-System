@@ -129,7 +129,8 @@ export class ItemController {
     }
 
     submit() {
-        const itemId = $(this).data("item-id");
+        const itemId = +$("#itemActionModel").data("item-id");
+
         const itemName = $("#itemActionModel #item_name").val();
         const itemPrice = $("#itemActionModel #item_price").val();
         const itemCategory = $("#itemActionModel #item_category").val();
@@ -138,16 +139,15 @@ export class ItemController {
         const filePath = itemImage.val();
 
         const newItem = {
-            id: itemId,
             name: itemName,
             price: itemPrice,
             quantity: itemQuantity,
             image: filePath
         }
 
-        console.log(newItem)
+        console.log(itemId)
 
-        if (!itemId || itemId == "") {
+        if (!itemId) {
             try {
                 ItemModel.addItem(newItem, itemCategory);
                 tost("Item added successfully", "success");
@@ -162,7 +162,7 @@ export class ItemController {
         } else {
             // update item
             try {
-                ItemModel.updateItem(newItem);
+                ItemModel.updateItem({ id: itemId, category: itemCategory, ...newItem });
                 tost("Item update successfully", "success");
             } catch (e) {
                 tost(e.message || "Error updating item", "error");

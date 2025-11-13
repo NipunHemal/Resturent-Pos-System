@@ -95,7 +95,7 @@ const ItemModel = {
       name: item.name,
       price: parseFloat(item.price),
       quantity: parseInt(item.quantity) || 0,
-      image: item.image || "https://e7.pngegg.com/pngimages/692/99/png-clipart-delicious-food-food-salad-thumbnail.png"
+      image: "https://e7.pngegg.com/pngimages/692/99/png-clipart-delicious-food-food-salad-thumbnail.png"
     };
 
     // Add item to the category
@@ -106,6 +106,7 @@ const ItemModel = {
 
   updateItem: (item) => {
     const { id, category, ...updateData } = item;
+    console.log(id, category)
     const itemId = parseInt(id);
 
     if (!itemDb[category]) {
@@ -114,11 +115,18 @@ const ItemModel = {
 
     const itemIndex = itemDb[category].findIndex((i) => i.id === itemId);
 
-    if (itemIndex != -1) {
+    if (itemIndex == -1) {
       throw new Error(
         `Item with ID ${itemId} not found in category "${category}"`
       );
     }
+
+    console.log({
+      ...itemDb[category][itemIndex],
+      ...updateData,
+      image: updateData.image || itemDb[category][itemIndex].image,
+      id: itemId, // Ensure ID doesn't change
+    })
 
     // Update the item
     itemDb[category][itemIndex] = {

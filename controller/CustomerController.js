@@ -4,7 +4,7 @@ import OrderModel from "../model/OrderModel.js";
 import { tost } from "../util/tostUtil.js";
 
 
-const render = () => {
+export const render = () => {
     $("#main-content").html(CustomerView());
     loadCustomers();
 }

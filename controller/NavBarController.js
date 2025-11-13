@@ -9,8 +9,6 @@ export class NavBarController {
     constructor() {
         this._dashboardController = new DashboardController();
         this._itemsController = new ItemController();
-        this._itemsController.render();
-        this._itemsController.load();
     }
 
     init() {
