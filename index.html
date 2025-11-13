@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,18 +39,18 @@
             class="navbar-nav ms-auto me-auto d-flex align-items-center gap-4"
           >
             <li class="nav-item">
-              <a class="nav-link fw-normal text-black-50 txt-orange" href="#"
+              <a class="nav-link fw-normal text-black-50 txt-orange" href="#" id="home-nav-link"
                 >Home</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link fw-normal text-black-50" href="#">Orders</a>
+              <a class="nav-link fw-normal text-black-50" href="#" id="orders-nav-link">Orders</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fw-normal text-black-50" href="#">Customers</a>
+              <a class="nav-link fw-normal text-black-50" href="#" id="customers-nav-link">Customers</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fw-normal text-black-50" href="#">Cashier</a>
+              <a class="nav-link fw-normal text-black-50" id="order-history-nav-link" href="#">Order History</a>
             </li>
           </ul>
           <div class="d-flex align-items-center gap-3 d-none d-lg-flex">
@@ -68,52 +69,7 @@
     </nav>
 
     <div id="main-container" class="container-fluid overflow-hidden">
-      <div class="row vh-100">
-        <div
-          class="col-md-1 col-lg-1 bg-white vh-100 shadow-sm pt-4"
-          id="left-nav"
-        >
-          <div
-            id="sidebar-content"
-            class="nav m-1 row row-cols-2 row-cols-md-1 nav-pills text-center"
-          ></div>
-        </div>
-
-        <main class="col-md-11 col-lg-11 bg-light p-4" id="main-content">
-          <div class="d-flex mb-3">
-            <div>
-              <button class="btn btn-outline-secondary active me-2">All</button>
-              <button class="btn btn-outline-secondary me-2">Ice Coffee</button>
-              <button class="btn btn-outline-secondary me-2">American</button>
-              <button class="btn btn-outline-secondary me-2">Café Noir</button>
-              <button class="btn btn-outline-secondary me-2">
-                Brewed Coffee
-              </button>
-            </div>
-            <div class="input-group ms-auto w-25">
-              <input
-                id="order_item_search_input"
-                type="text"
-                class="form-control rounded-end-circle rounded-pill"
-                placeholder="Search items..."
-                aria-label="Search items"
-                aria-describedby="basic-addon2"
-              />
-              <span
-                class="input-group-text rounded-pill rounded-start-circle"
-                id="basic-addon2"
-              >
-                <i class="bi bi-search"></i>
-              </span>
-            </div>
-          </div>
-
-          <div
-            class="row row-cols-auto gap-3 d-flex justify-content-center"
-            id="order_item_container"
-          ></div>
-        </main>
-      </div>
+      
     </div>
 
     <button
@@ -129,6 +85,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="./util/siteUtil.js"></script>
     <script type="module" src="./assets/js/script.js"></script>
+    <script type="module" src="./controller/NavBarController.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       const forms = document.querySelectorAll("form:not([novalidate])");
