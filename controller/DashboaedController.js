@@ -8,9 +8,15 @@ import { loader } from "../component/Loader.js";
 import { SidebarContent } from "../component/SidebarItem.js";
 import ItemModel from "../model/ItemModel.js";
 import { tost } from "../util/tostUtil.js";
+import { DashboardView } from "../view/Dashboard.js";
 
 export class DashboardController {
   constructor() {
+    this.render();
+  }
+
+  render() {
+    $("#main-container").html(DashboardView())
     this.init();
   }
 
