@@ -1,40 +1,47 @@
-import { customerDb } from "../db/db.js";
+import { customerDb as db } from "../db/db.js";
 
 export const CustomerModel = {
   getAll() {
-    return [...customerDb];
+    return db;
   },
 
-  // 🟢 Get customer by ID
+  getAllByQuery(query) {
+    return db.filter((c) => c.name.toLowerCase().includes(query.toLowerCase()));
+  },
+
   getById(id) {
-    return customerDb.find((c) => c.id === id) || null;
+    return db.find((c) => c.id === id);
   },
 
-  // 🟢 Add new customer
   add(customerData) {
-    const newId =
-      customerDb.length > 0 ? Math.max(...customerDb.map((c) => c.id)) + 1 : 1;
-
-    const newCustomer = { id: newId, ...customerData };
-    customerDb.push(newCustomer);
-    return newCustomer;
-  },
-
-  // 🟡 Update existing customer
-  update(id, updatedData) {
-    const index = customerDb.findIndex((c) => c.id === id);
-    if (index === -1) return null;
-
-    customerDb[index] = { ...customerDb[index], ...updatedData };
-    return customerDb[index];
-  },
-
-  // 🔴 Delete customer by ID
-  remove(id) {
-    const index = customerDb.findIndex((c) => c.id === id);
-    if (index === -1) return false;
-
-    customerDb.splice(index, 1);
+    const newCustomer = {
+      id: this.generateId(),
+      ...customerData,
+      email: " ",
+    };
+    db.push(newCustomer);
     return true;
+  },
+
+  update(id, updatedData) {
+    console.log(+id);
+    const index = db.findIndex((c) => c.id === +id);
+    if (index !== -1) {
+      db[index] = { ...db[index], ...updatedData };
+      return true
+    }
+    return false;
+  },
+
+  remove(id) {
+    const index = db.findIndex((c) => c.id === id);
+    if (index !== -1) {
+      db.splice(index, 1);
+      return true;
+    }
+    return false;
+  },
+  generateId() {
+    return this.getAll().length + 1;
   },
 };

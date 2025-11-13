@@ -64,6 +64,10 @@ const OrderModel = {
   generateId() {
     return orderDb.length > 0 ? Math.max(...orderDb.map((o) => o.id)) + 1 : 1;
   },
+  getOrdersByCustomerId(customerId) {
+    if (!customerId) return [];
+    return orderDb.filter(order => order.customerId === customerId);
+  }
 };
 
 export default OrderModel;

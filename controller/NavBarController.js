@@ -1,5 +1,5 @@
 import { loader } from "../component/Loader.js";
-import { CustomerView } from "../view/CustomerView.js";
+import renderCustomer from "../controller/CustomerController.js";
 import { ItemsView } from "../view/ItemsView.js";
 import { OrderHistoryView } from "../view/OrderHostoryView.js";
 import { OrdersView } from "../view/OrdersView.js";
@@ -46,7 +46,7 @@ export class NavBarController {
     handleCustomersClick() {
         loader("dark");
         console.log("Customers clicked");
-        $("#main-container").html(CustomerView())
+        renderCustomer();
     }
 
     handleOrderHistoryClick() {
